@@ -44,9 +44,9 @@ class PriceController extends AbstractController
         $age = date_diff($tripDto->getBirthday(), new \DateTimeImmutable())->y;
 
         return match (true) {
-            $age <= 2  => 80,
+            $age <= 2  => $tripDto->getBasePrice() * 0.8 < 4500 ? 80 : 4500,
             $age <= 6  => $tripDto->getBasePrice() * 0.3 < 4500 ? 30 : 4500,
-            $age <= 12 => 10,
+            $age <= 12 => $tripDto->getBasePrice() * 0.1 < 4500 ? 10 : 4500,
             default    => 0
         };
     }
