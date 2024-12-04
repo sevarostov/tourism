@@ -37,8 +37,19 @@ class PriceControllerTest  extends TestCase
             [500000, "2014-12-11", "2027-05-15", '2027-01-15', 494000],
             [500000, "2014-12-11", "2027-01-10", '', 495500],
             [500000, "2014-12-11", "2027-01-15", '2026-02-10', 494000],
+            [500001, "2014-12-11", "2027-12-15", '2026-07-10', 494001],
+            [5000, "2014-12-11", "2027-12-15", '2026-07-10', 4650],
+            [5000, "2014-12-11", "2027-12-15", '2026-09-10', 4750],
+            [50000, "2014-12-11", "2027-12-15", '2026-09-10', 44000],
+            [50000, "2014-12-11", "2027-12-15", '2026-10-10', 48500],
+            [500001, "2014-12-11", "2027-12-15", '2026-10-10', 494001],
         ];
 
+    /**
+     * @covers \App\Controller\Api\PriceController::calculateAction
+     * @covers \App\Controller\Api\PriceController::childDiscount
+     * @covers \App\Controller\Api\PriceController::reservationDiscount
+     */
     public function testCalculateActionWithTripDto(): void
     {
         $priceController = new PriceController();

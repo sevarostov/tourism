@@ -51,6 +51,12 @@ class PriceController extends AbstractController
         };
     }
 
+    /**
+     * @param TripDto $tripDto
+     * @param $childDiscountPrice
+     * @return int
+     */
+
     public function reservationDiscount(TripDto $tripDto, $childDiscountPrice)
     {
         $startAt  = ($tripDto->getStartAt() ?? new \DateTimeImmutable());
