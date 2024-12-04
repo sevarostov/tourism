@@ -64,24 +64,42 @@ class PriceController extends AbstractController
             $startAt >= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '04', '01')->setTime(0, 0, 0)
             && $startAt <= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '09', '30')->setTime(0, 0, 0)
             && $month => match (true) {
-                $month <= 11 && $thisYear => $childDiscountPrice * 0.07 < 1500 ? 7 : 1500,
-                $month == 12 && $thisYear => $childDiscountPrice * 0.05 < 1500 ? 5 : 1500,
-                $month == 1 && $nextYear  => $childDiscountPrice * 0.03 < 1500 ? 3 : 1500,
+                $month <= 11 && $thisYear => $childDiscountPrice * 0.07 < 1500
+                    ? 7
+                    : 1500,
+                $month == 12 && $thisYear => $childDiscountPrice * 0.05 < 1500
+                    ? 5
+                    : 1500,
+                $month == 1 && $nextYear  => $childDiscountPrice * 0.03 < 1500
+                    ? 3
+                    : 1500,
                 default                   => 0,
             },
-            $startAt >= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '10', '01')->setTime(0, 0, 0)
-            && $startAt <= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '01', '14')->setTime(0, 0, 0)
+            $startAt <= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '10', '01')->setTime(0, 0, 0)
+            && $startAt >= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '01', '14')->setTime(0, 0, 0)
             && $month => match (true) {
-                $month <= 3 && $thisYear => $childDiscountPrice * 0.07 < 1500 ? 7 : 1500,
-                $month == 4 && $thisYear => $childDiscountPrice * 0.05 < 1500 ? 5 : 1500,
-                $month == 5 && $thisYear => $childDiscountPrice * 0.03 < 1500 ? 3 : 1500,
+                $month <= 3 && $thisYear => $childDiscountPrice * 0.07 < 1500
+                    ? 7
+                    : 1500,
+                $month == 4 && $thisYear => $childDiscountPrice * 0.05 < 1500
+                    ? 5
+                    : 1500,
+                $month == 5 && $thisYear => $childDiscountPrice * 0.03 < 1500
+                    ? 3
+                    : 1500,
                 default                  => 0,
             },
             $startAt >= (new \DateTimeImmutable())->setDate(intval($startAt->format('Y')), '01', '15')->setTime(0, 0, 0)
             && $month => match (true) {
-                $month <= 8 && $thisYear  => $childDiscountPrice * 0.07 < 1500 ? 7 : 1500,
-                $month == 9 && $thisYear  => $childDiscountPrice * 0.05 < 1500 ? 5 : 1500,
-                $month == 10 && $thisYear => $childDiscountPrice * 0.03 < 1500 ? 3 : 1500,
+                $month <= 8 && $thisYear  => $childDiscountPrice * 0.07 < 1500
+                    ? 7
+                    : 1500,
+                $month == 9 && $thisYear  => $childDiscountPrice * 0.05 < 1500
+                    ? 5
+                    : 1500,
+                $month == 10 && $thisYear => $childDiscountPrice * 0.03 < 1500
+                    ? 3
+                    : 1500,
                 default                   => 0,
             },
             default   => 0
