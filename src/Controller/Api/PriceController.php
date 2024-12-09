@@ -59,7 +59,7 @@ class PriceController extends AbstractController
 
     public function reservationDiscount(TripDto $tripDto, $childDiscountPrice)
     {
-        $startAt  = ($tripDto->getStartAt() ?? new \DateTimeImmutable());
+        $startAt  = $tripDto->getStartAt();
         $startAt->setTime(0, 0, 0);
 
         $month    = $tripDto->getPayedAt()?->format('m');
