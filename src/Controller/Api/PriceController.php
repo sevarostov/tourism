@@ -26,7 +26,7 @@ class PriceController extends AbstractController
         $reservationDiscount      = $this->reservationDiscount($tripDto, $childDiscountPrice);
         $reservationDiscountPrice = match ($reservationDiscount) {
             1500, 0 => $childDiscountPrice - $reservationDiscount,
-            default => intval($tripDto->getBasePrice()) - intval($tripDto->getBasePrice()) * $reservationDiscount / 100,
+            default => $childDiscountPrice - intval($tripDto->getBasePrice()) * $reservationDiscount / 100,
         };
 
         return new JsonResponse([
@@ -44,9 +44,22 @@ class PriceController extends AbstractController
         $age = date_diff($tripDto->getBirthday(), new \DateTimeImmutable())->y;
 
         return match (true) {
-            $age <= 2  => $tripDto->getBasePrice() * 0.8 < 4500 ? 80 : 4500,
-            $age <= 6  => $tripDto->getBasePrice() * 0.3 < 4500 ? 30 : 4500,
-            $age <= 12 => $tripDto->getBasePrice() * 0.1 < 4500 ? 10 : 4500,
+            $age <= 2 && $age >= 0 => $tripDto->getBasePrice() * 0.8 <= 4500
+                                      && $tripDto->getBasePrice() >= 4500
+                                      || $tripDto->getBasePrice() < 4500
+                ? 80
+                : 4500,
+            $age <= 6 && $age > 2  => $tripDto->getBasePrice() * 0.3 < 4500
+                                      && $tripDto->getBasePrice() > 4500
+                                      || $tripDto->getBasePrice() < 4500
+                ? 30
+                : 4500,
+            $age <= 12 && $age > 6 => $tripDto->getBasePrice() * 0.1 < 4500
+                                      && $tripDto->getBasePrice() > 4500
+                                      || $tripDto->getBasePrice() < 4500
+                ? 10
+                :
+                4500,
             default    => 0
         };
     }
