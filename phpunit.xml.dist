@@ -23,11 +23,18 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <coverage pathCoverage="true" processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <html outputDirectory="build/coverage" />
+            <cobertura outputFile="build/logs/cobertura.xml"/>
+        </report>
     </coverage>
+    <logging>
+        <junit outputFile="build/logs/junit.xml" />
+    </logging>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
@@ -35,4 +42,7 @@
 
     <extensions>
     </extensions>
+    <logging>
+        <junit  outputFile="/var/www/tourism/public/cov/junit_file.xml"/>
+    </logging>
 </phpunit>
