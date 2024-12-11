@@ -1,5 +1,5 @@
 <project name="Test" default="test" basedir=".">
     <target name="test">
-        <exec executable="bin/phpunit" failonerror="true" />
+        <exec executable="phpunit" failonerror="true" />
     </target>
 </project>
