@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="tourism" default="build">
+    <target name="test">
+        <echo message="Running unit tests with PHPUnit" />
+        <exec executable="phpunit" failonerror="true">
+            <arg value="tests/"/>
+        </exec>
+    </target>
+
     <target name="build"
             depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,behat,phpcb"/>
 
